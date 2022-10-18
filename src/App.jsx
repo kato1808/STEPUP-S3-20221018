@@ -1,35 +1,22 @@
-import { StrictMode, useState } from "react";
-import ColorfulMessage from "./components/ColorfulMessage";
+import { useState } from "react";
+import ".";
+import { ChildArea } from "./ChildArea";
 
-const App = () => {
-  const [num, setNum] = useState(0);
-  const [faceShowflag, setFaceShowflag] = useState(true);
-
+export default function App() {
+  console.log("App");
+  const [text, setText] = useState("");
+  const onChangeText = (e) => setText(e.target.value);
   const onClickCountup = () => {
     setNum(num + 1);
   };
-  const onClickSwitchShowFlag = () => {
-    setFaceShowflag(!faceShowflag);
-  };
-
-  if (num % 3 === 0) {
-    faceShowflag || setFaceShowflag(true);
-  } else {
-    faceShowflag && setFaceShowflag(false);
-  }
-
   return (
-    <>
-      <h1 style={{ color: "red" }}>こんにちは</h1>
-      <ColorfulMessage color="blue">お元気ですか</ColorfulMessage>
-      <ColorfulMessage color="pink">元気です</ColorfulMessage>
-      <button onClick={onClickCountup}>カウントアップ</button>
+    <div className="App">
+      <input value={text} onChange={onChangeText} />
       <br />
-      <button onClick={onClickSwitchShowFlag}>on/off</button>
-      <p>{num}</p>
-      {faceShowflag && <p>lallrkgk</p>}
-    </>
+      <br />
+      <button>カウントアップ</button>
+      <ChildArea />
+    </div>
   );
-};
-
-export default App;
+}
+// export default App;
