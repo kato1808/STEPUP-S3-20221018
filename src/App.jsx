@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import ".";
 import { ChildArea } from "./ChildArea";
 
@@ -10,13 +10,16 @@ export default function App() {
   const onChangeText = (e) => setText(e.target.value);
 
   const onClickOpen = () => setOpen(!open);
+
+  const onClickClose = useCallback(() => setOpen(false), [setOpen]);
+
   return (
     <div className="App">
       <input value={text} onChange={onChangeText} />
       <br />
       <br />
       <button onClick={onClickOpen}>カウントアップ</button>
-      <ChildArea open={open} />
+      <ChildArea open={open} onClickClose={onClickClose} />
     </div>
   );
 }
